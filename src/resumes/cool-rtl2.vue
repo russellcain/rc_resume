@@ -1,33 +1,68 @@
 <template>
   <div class="resume">
     <div class="banner">
-      <div
-        class="banner__fullname"
-      >{{ person.name.first }} {{ person.name.middle }} {{ person.name.last }}</div>
+      <div class="banner__fullname" style="margin-top: -5px; margin-bottom: 5px">
+        {{ person.name.first }} "{{ person.name.nickname }}"
+        {{ person.name.last }}
+      </div>
       <div class="banner__position">{{ person.position }}</div>
-      <div
-        class="banner__location"
-      >{{ lang.born }} {{person.birth.year}} {{ lang.bornIn }} {{person.birth.location}}</div>
+      <!-- <div class="banner__location">{{ person.birth.location }}</div> -->
+      <div class="section" style="margin: 0">
+        <div class="section-content section-content--plain">
+          <a
+            v-if="person.contact.github"
+            class="section-link"
+            :href="contactLinks.github"
+          >
+            {{ person.contact.github }}
+            <i
+              class="section-link__icon fa fa-github"
+              style="margin-left: 8px; margin-right: 0"
+            ></i>
+          </a>
+
+          <div class="section-link">
+            {{ person.contact.phone }}
+            <i
+              class="section-link__icon material-icons"
+              style="margin-left: 8px; margin-right: 0"
+              >phone</i
+            >
+          </div>
+
+          <a class="section-link" :href="contactLinks.email">
+            {{ person.contact.email }}
+            <i
+              class="section-link__icon material-icons"
+              style="margin-left: 8px; margin-right: 0"
+              >mail</i
+            >
+          </a>
+        </div>
+      </div>
     </div>
 
     <div class="content">
       <div class="content__left">
         <div class="section">
-          <div class="section-headline">{{ lang.about }}</div>
+          <div class="section-headline" style="justify-content: flex-end">
+            {{ lang.about }}
+          </div>
 
           <div class="section-content section-content--plain">
             {{ person.about }}
-            <br>
-            <br>
+            <br />
+            <br />
             {{ person.knowledge }}
+            <br />
+            <br />
+            {{ person.bonus }}
           </div>
         </div>
 
-        <div
-          v-if="person.skills"
-          class="section">
-          <div class="section-headline">
-            {{ lang.skills }}
+        <div v-if="person.skills" class="section">
+          <div class="section-headline" style="justify-content: flex-end">
+            Stack
           </div>
 
           <div class="section-content-grid">
@@ -35,7 +70,8 @@
               v-for="(skill, index) in person.skills"
               class="grid-item"
               :key="index"
-              :href="skill.url">
+              :href="skill.url"
+            >
               <span class="squarred-grid-item">
                 {{ skill.name }}
               </span>
@@ -44,51 +80,15 @@
         </div>
 
         <div class="section">
-          <div class="section-headline">
-            {{ lang.contact }}
-          </div>
-
+          <div class="section-headline" style="justify-content: flex-end">Hobbies</div>
           <div class="section-content section-content--plain">
-            <div class="section-link">
-              <i class="section-link__icon material-icons">business</i>{{ person.contact.street }}
-            </div>
-
-            <a
-              class="section-link"
-              :href="contactLinks.email">
-              <i class="section-link__icon material-icons">mail</i>{{ person.contact.email }}
-            </a>
-
-            <div class="section-link">
-              <i class="section-link__icon material-icons">phone</i>{{ person.contact.phone }}
-            </div>
-
-            <a
-              v-if="person.contact.website"
-              class="section-link"
-              :href="person.contact.website">
-              <i class="section-link__icon fa fa-globe"></i>{{ person.contact.website }}
-            </a>
-
-            <a
-              v-if="person.contact.linkedin"
-              class="section-link"
-              :href="contactLinks.linkedin">
-              <i class="section-link__icon fa fa-linkedin"></i>{{ person.contact.linkedin }}
-            </a>
-
-            <a
-              v-if="person.contact.github"
-              class="section-link"
-              :href="contactLinks.github">
-              <i class="section-link__icon fa fa-github"></i>{{ person.contact.github }}
-            </a>
-
-            <a
-              v-if="person.contact.medium"
-              class="section-link"
-              :href="contactLinks.medium">
-              <i class="section-link__icon fa fa-medium"></i>{{ person.contact.medium }}
+            <a v-for="(hobby, index) in person.hobbies" class="section-link" :key="index">
+              {{ hobby.name }}
+              <i
+                class="section-link__icon material-icons"
+                :style="`margin-left: 8px; margin-right: ${hobby.margin}`"
+                >{{ hobby.icon }}</i
+              >
             </a>
           </div>
         </div>
@@ -96,7 +96,7 @@
 
       <div class="content__right">
         <div class="section">
-          <div class="section-headline">
+          <div class="section-headline" style="margin-bottom: -5px">
             <i class="section-headline__icon material-icons">work</i>{{ lang.experience }}
           </div>
 
@@ -105,75 +105,80 @@
               v-for="(experience, index) in person.experience"
               :key="index"
               class="section-content__item"
-              :href="experience.website">
-
-              <span class="section-content__header">{{ experience.position }}</span>
-              <span class="section-content__subheader">
-                {{ experience.company }}
-                <span class="section-content__plain">{{ experience.location }}</span>
+              style="padding-top: 10px"
+              :href="experience.website"
+            >
+              <span class="section-content__header">
+                <div class="section-content__header">{{ experience.position }}</div>
+                <div class="section-content__subheader">
+                  {{ experience.company }}
+                </div>
               </span>
 
-              <div class="section-content__text">{{ experience.timeperiod }}</div>
-              <span class="section-content__text--light">{{ experience.description }}</span>
+              <i class="section-content__text">
+                {{ experience.timeperiod }}
+              </i>
+              <div
+                v-for="(description, inner_index) in experience.descriptions"
+                :key="inner_index"
+              >
+                <span
+                  class="section-content section-content__plain"
+                  style="margin-top: 15px; padding-left: 1px"
+                  >{{ description }}</span
+                >
+              </div>
             </a>
           </div>
         </div>
 
         <div class="section">
           <div class="section-headline">
-            <i class="section-headline__icon material-icons">school</i>{{ lang.education }}
+            <i class="section-headline__icon material-icons">school</i
+            >{{ lang.education }}
           </div>
 
           <div class="section-content">
+            <a class="section-content__item">
+              <span class="section-content__header"> {{ person.school }} </span>
+            </a>
             <a
               v-for="(education, index) in person.education"
               class="section-content__item"
               :key="index"
-              :href="education.website">
-
-              <span class="section-content__header"> {{ education.school }} </span>
+              :href="education.website"
+              style="margin-top: 10px"
+            >
+              <span class="section-content__header">
+                {{ education.school }}
+              </span>
               <span class="section-content__subheader">{{ education.degree }}</span>
-              <span class="section-content__text"> {{ education.timeperiod }} </span>
-              <span class="section-content__text--light"> {{ education.description }} </span>
+              <i class="section-content__text">
+                {{ education.timeperiod }}
+              </i>
+              <span class="section-content__text--light">
+                {{ education.description }}
+              </span>
             </a>
           </div>
         </div>
 
-        <div
-          v-if="person.projects"
-          class="section">
+        <div v-if="person.projects" class="section">
           <div class="section-headline">
             <i class="section-headline__icon material-icons">code</i>{{ lang.projects }}
           </div>
 
-          <div class="section-content-grid">
-            <a v-for="(project, index) in person.projects" :key="index"
-              class="section-content__item-grid"
-              :href="project.url">
+          <div class="section-content">
+            <a
+              v-for="(project, index) in person.projects"
+              :key="index"
+              class="section-content__item"
+              style="margin-top: 10px"
+            >
               <span class="section-content__header"> {{ project.name }} </span>
               <span class="section-content__subheader">{{ project.platform }}</span>
-              <span class="section-content__text"> {{ project.description }} </span>
-            </a>
-          </div>
-        </div>
-
-        <div
-          v-if="person.contributions"
-          class="section">
-          <div class="section-headline">
-            <i class="section-headline__icon fa fa-heart"></i>{{lang.contributions}}
-          </div>
-
-          <div class="section-content-grid">
-            <a
-              v-for="(contribution, index) in person.contributions"
-              class="section-content__item-grid"
-              :key="index"
-              :href="contribution.url">
-              <span class="section-content__header"> {{ contribution.name }} </span>
-              <span class="section-content__text"> {{ contribution.description }} </span>
-              <span class="section-content__text--light" style="word-break: break-all;">
-                {{ contribution.url }}
+              <span class="section-content__text--light">
+                {{ project.description }}
               </span>
             </a>
           </div>
@@ -181,8 +186,7 @@
       </div>
     </div>
 
-    <img class="picture"/>
-
+    <img class="picture" />
   </div>
 </template>
 
@@ -196,17 +200,25 @@ export default Vue.component(name, getVueOptions(name));
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="less" scoped>
-@accent-color: #34495E;
-@banner-color: #42b883;
+@accent-color: #744c61;
+@banner-color: #4c745f;
 @banner-height: 120px;
 @picture-size: 120px;
 @picture-offset: 35px;
 @base-padding: 30px;
 @left-column-width: 240px;
 
+@left_side: {
+  justify-content: 'flex-end';
+};
+
+@right_side: {
+  justify-content: 'flex-start';
+};
+
 .resume {
   position: relative;
-  font-family:'Roboto' !important;
+  font-family: 'Roboto' !important;
   font-size: 0.9em;
 }
 
@@ -218,7 +230,7 @@ export default Vue.component(name, getVueOptions(name));
   width: @picture-size;
   border-radius: 50%;
   border: 5px solid @accent-color;
-  content: url('../../resume/id.jpg');
+  content: url('../../resume/id.png');
   z-index: 2;
 }
 
@@ -231,7 +243,7 @@ export default Vue.component(name, getVueOptions(name));
   flex-direction: column;
   align-items: flex-end;
 
-  color: white;
+  color: rgba(255, 255, 255, 0.879);
 
   &__fullname {
     font-size: 32px;
@@ -280,7 +292,7 @@ export default Vue.component(name, getVueOptions(name));
 .section-headline {
   display: flex !important;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: flex-start;
   color: @accent-color;
   display: inline-block;
   font-size: 1.2em;
@@ -296,9 +308,13 @@ export default Vue.component(name, getVueOptions(name));
   font-size: 1.1em;
   color: rgba(255, 255, 255, 0.59) !important;
   text-decoration: none;
+  justify-content: flex-end;
 
   &__icon {
     color: white;
+    &--left {
+      margin-left: 8px;
+    }
   }
 }
 
@@ -310,7 +326,7 @@ export default Vue.component(name, getVueOptions(name));
   &__item {
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: flex-start;
     margin-bottom: 5px;
     text-decoration: none;
     color: #00104f;
@@ -338,7 +354,6 @@ export default Vue.component(name, getVueOptions(name));
   }
 
   &__plain {
-    display: inline;
     font-weight: 300;
   }
 
@@ -378,5 +393,4 @@ export default Vue.component(name, getVueOptions(name));
   margin-top: 5px;
   padding: 5px;
 }
-
 </style>

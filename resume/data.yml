@@ -2,84 +2,89 @@
 # Any fields left unchanged, please delete so your resume is fully yours!
 
 name:
-  first: John
+  first: Russell
+  nickname: Rusty
   middle:
-  last: Doe
-about: Hi, my name is John Doe. I'm just about the most boring type of person you could
-       possibly imagine. I like collecting leaves from the tree in my back yard and documenting
-       each time I eat a peanut that is non-uniform. I am not a robot. Please hire me.
+  last: Cain
+about: Aims to create and improve the design, performance, and cleanliness of high-quality software.
 position: Software Developer
-
 birth:
-  year: 1990
-  location: New York
+  year: 1995
+  location: Software Engineer
 
 # you may add more experiences by duplicating the template
 
 experience:
-- company: Company A
-  position: Developer
-  timeperiod: since January 2016
-  description: Programming and watching cute cat videos.
-  website: https://example.com
+- company: Discovery Education
+  position: Search Engineer
+  timeperiod: Mar 2021 - Present
+  descriptions:
+  - Resident search expert in charge of creating, maintaining, and improving the elastic indices which back Discovery's results and recommendation services.
+  - Oversaw upgrade from Elasticsearch 3 to version 8, parallelizing the batch indexing jobs along the way.
+  - Projects included search term correction logic, support for similar result recommendation, NLP keyword extraction.
+  - Dockerized an elastic search cluster for speedier local development and test isolation.
 
-- company: Company B
-  position: Frontend Developer
-  timeperiod: January 2015 - December 2015
-  description: Fulfillment of extremely important tasks.
 
-- company: Company C
-  position: Trainee
-  timeperiod: March 2014 - December 2014
-  description: Making coffee and baking cookies.
+- company: Pareto Intelligence
+  position: Developer - Full Stack
+  timeperiod: Mar 2019 - Mar 2021
+  descriptions:
+  - Orchestrated a Centralized Data Model POC which leveraged concurrent parsing of patient data within an event-driven, Kafka-backed design. Users could perform data reconciliation through the adjoining React UI.
+  - Crafted a microservice family to schedule AWS S3 file processing and movement, now used within the company's flagship injestion framework.
+  - Pioneered three libraries, an AWS object-store, a Typescript component package, and a Scala backend service to minimize tech-debt and promote development consistency, each of which are used daily.
+
 
 education:
-- degree: Master of Arts
-  timeperiod: March 2012 - December 2013
-  description: Major in Hacking and Computer Penetration, University A, New York, USA.
-  website: https://example.com
 
-- degree: Bachelor of Science
-  timeperiod: March 2009 - December 2011
-  description: Major in Engineering, University B, Los Angeles, USA.
+- degree: "MS: Mathematics"
+  timeperiod: Jan 2017 - Dec 2018
+  description: Focus in Number / Group Theory
+
+- degree: "BS: Math & Econ"
+  timeperiod: Aug 2014 - May 2018
+  description: Honors / Cum Laude
+
+school: Loyola University of Chicago
 
 # skill level goes from 0 to 100
 skills:
-- name: HTML5
-  level: 99
-- name: CSS3
-  level: 95
-- name: JavaScript
-  level: 97
-- name: Node.js
-  level: 93
-- name: Angular 2
-  level: 60
-- name: TypeScript
-  level: 80
-- name: ES.Next
-  level: 70
-- name: Docker
-  level: 99
-knowledge: Also proficient in Adobe Photoshop and Illustrator, grew up bilingual
-  (English and Klingon).
+- name: Scala (w/ Akka)
+- name: Python (w/ Django & Flask)
+- name: Elastic
+- name: MySQL, Postgres, etc.
+- name: Kubernetes, Docker, & Jenkins
+- name: RESTful (w/ Swagger)
+- name: React (Redux)
+- name: Kafka
+- name: TSX & JS
+- name: Vue & SCSS (this resumé)
+
+knowledge: Recently, I've really enjoyed diving deeper into all things search and will happily talk your ear off about it.
+bonus: At the end of the day, I love puzzles, understanding how things work, and identifying slicker solutions.
 
 projects:
-- name: best-resume-ever
-  platform: Vue
-  timeperiod: February 2016
-  description: 👔 💼 Build fast 🚀 and easy multiple beautiful resumes and create your best CV ever! Made with Vue and LESS.
-  url: https://github.com/salomonelli/best-resume-ever
+- name: sudoku-solvers
+  platform: Python, Go, TSX, Scala
+  description: My favorite way to learn new languages, having them host and solve sudoku boards.
+
+- name: fantasy-hockey
+  platform: Scala, TSX
+  description: A customized platform to accomodate my family's particular fantasy hockey desires (salary cap, trades, etc).
 
 # optional, not all resume templates have hobbies included
 hobbies:
-- name: Video Games
-  iconClass: fa fa-gamepad
-  url: https://example.com
+- name: Coding
+  icon: folder_data
+  margin: -45%
 
-- name: Drawing
-  iconClass: fa fa-pencil
-  url: https://example.com
+- name: Climbing
+  icon: landscape_2
+  margin: -18%
+
+- name: Biking
+  icon: directions_bike
+  margin: -1px
+
 
 contributions:
 - name: best-resume-ever
@@ -87,12 +92,10 @@ contributions:
   url: https://github.com/salomonelli/best-resume-ever
 
 contact:
-  email: john.doe@email.com
-  phone: 0123 456789
-  street: 1234 Broadway
-  city: New York
-  website: johndoe.com
-  github: johnyD
+  email: russellcain24@gmail.com
+  phone: 727.858.2052
+  # linkedin: russellcain
+  github: russellcain
 # en, de, fr, pt, ca, cn, it, es, th, pt-br, ru, sv, id, hu, pl, ja, ka, nl, he, zh-tw, lt, ko, el, nb-no
 lang: en
 `
